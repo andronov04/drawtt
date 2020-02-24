@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
   loadModel() async {
     String res;
     res = await Tflite.loadModel(
-        model: "posenet_mobilenet_v1_100_257x257_multi_kpt_stripped.tflite");
+        model: 'assets/posenet_mobilenet_v1_100_257x257_multi_kpt_stripped.tflite');
     print(res);
   }
 
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
     return Scaffold(
-      body: _model == ""
+      body: _model == ''
           ? Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
