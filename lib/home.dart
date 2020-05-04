@@ -1,3 +1,4 @@
+import 'package:drawtt/draw.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   loadModel() async {
     String res;
     res = await Tflite.loadModel(
-        model: "posenet_mobilenet_v1_100_257x257_multi_kpt_stripped.tflite");
+        model: 'assets/posenet_mobilenet_v1_100_257x257_multi_kpt_stripped.tflite');
     print(res);
   }
 
@@ -52,8 +53,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
+    print(math.max(_imageHeight, _imageWidth));
+    print(math.min(_imageHeight, _imageWidth));
+    print(screen.height);
+    print(screen.width);
     return Scaffold(
-      body: _model == ""
+      body: _model == ''
           ? Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -72,6 +77,7 @@ class _HomePageState extends State<HomePage> {
             _model,
             setRecognitions,
           ),
+          new MyDraw(),
           BndBox(
               _recognitions == null ? [] : _recognitions,
               math.max(_imageHeight, _imageWidth),
